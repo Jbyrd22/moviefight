@@ -1,4 +1,4 @@
-require('dotenv').config();
+//require('dotenv').config();
 
 const autoCompleteConfig = {
 	renderOption(movie) {
@@ -14,7 +14,7 @@ const autoCompleteConfig = {
 	async fetchData(searchTerm) {
 		const response = await axios.get('http://www.omdbapi.com/', {
 			params : {
-				apikey : process.env.APIKEY,
+				apikey : APIKEY,
 				s      : searchTerm
 			}
 		});
@@ -50,11 +50,11 @@ let rightMovie;
 const onMovieSelect = async (movie, element, side) => {
 	const response = await axios.get('http://www.omdbapi.com/', {
 		params : {
-			apikey : '4ebd79ef',
+			apikey : APIKEY,
 			i      : movie.imdbID
 		}
 	});
-
+	console.log(response.data);
 	element.innerHTML = movieTemplate(response.data);
 
 	if (side === 'left') {
